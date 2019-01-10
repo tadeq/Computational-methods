@@ -34,7 +34,7 @@ def should_accept(old_cost, new_cost, temp):
 
 def simulated_annealing():
     global history, solution
-    temp = 1
+    temp = 10
     min_temp = 0.0000001
     while temp > min_temp:
         new_solution = generate_new_configuration(solution)
@@ -52,6 +52,9 @@ def update_plot(val):
     history = []
     solution = def_order
     ax.clear()
+    ax.set_title("simulated annealing")
+    ax.set_xlabel("iterations")
+    ax.set_ylabel("optimal route length")
     simulated_annealing()
     ax.plot(history, lw=0.5)
     solution_text.set_val(solution)
@@ -73,10 +76,6 @@ def update_map(val):
 fig = plt.figure(figsize=(18, 13))
 fig.canvas.set_window_title('Travelling salesman problem')
 ax = fig.add_axes([0.10, 0.45, 0.8, 0.48])
-ax.set_title("simulated annealing")
-ax.set_xlabel("iterations")
-ax.set_ylabel("optimal route")
-ax.plot(history, lw=0.5)
 
 x_axes = [fig.add_axes([0.03, step / 100.0, 0.27, 0.02]) for step in range(1, 40, 4)]
 y_axes = [fig.add_axes([0.35, step / 100.0, 0.27, 0.02]) for step in range(1, 40, 4)]
